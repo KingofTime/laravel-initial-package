@@ -13,18 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('profile_actions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('login')->unique(); //Login or cpf
-            $table->string('cpf')->unique();
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
             $table->integer('profile_id');
-            $table->rememberToken();
+            $table->integer('action_id');
             $table->timestamps();
-            $table->softDeletes();
+
+            $table->foreign('profile_id')->on('profiles')->references('id');
+            $table->foreign('action_id')->on('actions')->references('id');
+
         });
     }
 
@@ -35,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('profile_actions');
     }
 };
