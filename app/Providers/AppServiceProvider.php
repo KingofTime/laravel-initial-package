@@ -2,9 +2,7 @@
 
 namespace App\Providers;
 
-use App\Http\Requests\ProfileRequest;
-use Illuminate\Contracts\Validation\ValidatesWhenResolved;
-use Illuminate\Http\Request;
+
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

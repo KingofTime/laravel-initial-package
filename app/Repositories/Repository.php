@@ -12,6 +12,11 @@ class Repository
        protected Model $model
     ){}
 
+    public function get(int $id): Model
+    {
+        return $this->model::findOrFail($id);
+    }
+
     public function getAll(array $filter): Collection
     {
         return $this->model::where($filter)->get();

@@ -27,10 +27,6 @@ class ResourceController extends Controller
         return response($collection, 200);
     }
 
-    public function create()
-    {
-    }
-
     public function store()
     {
         $validated = $this->request->validated();
@@ -42,11 +38,12 @@ class ResourceController extends Controller
         ], 201);
     }
 
-    public function show()
-    {}
+    public function show(int $id)
+    {
+        $resource = $this->service->get($id);
 
-    public function edit()
-    {}
+        return response($resource, 200);
+    }
 
     public function update()
     {}
