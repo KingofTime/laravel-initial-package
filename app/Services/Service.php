@@ -32,4 +32,13 @@ class Service
     {
         return new JsonResource($this->repository->create($data));
     }
+
+    public function update($id, $data): void
+    {
+        $this->repository->update($id, $data);
+    }
+
+    public function delete($id) {
+        $this->repository->delete($id);
+    }
 }

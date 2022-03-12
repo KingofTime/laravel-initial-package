@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Parameters;
 use App\Services\Service;
-use Illuminate\Contracts\Validation\ValidatesWhenResolved;
 use Illuminate\Http\Request;
 
 class ResourceController extends Controller
@@ -45,9 +44,23 @@ class ResourceController extends Controller
         return response($resource, 200);
     }
 
-    public function update()
-    {}
+    public function update(int $id)
+    {
+        $validated = $this->request->validated();
 
-    public function destroy()
-    {}
+        $this->service->update($id, $validated);
+
+        return response([
+            "message" => "Recurso atualizado com sucesso"
+        ], 200);
+    }
+
+    public function destroy(int $id)
+    {
+        $this->service->delete($id);
+
+        return response([
+            "message" => "Recurso removido com sucesso"
+        ], 200);
+    }
 }

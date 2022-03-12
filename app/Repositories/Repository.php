@@ -31,4 +31,14 @@ class Repository
     {
         return $this->model::create($data);
     }
+
+    public function update($id, $data): void
+    {
+        $this->model::findOrFail($id)->update($data);
+    }
+
+    public function delete($id): void
+    {
+        $this->model::findOrFail($id)->delete();
+    }
 }
