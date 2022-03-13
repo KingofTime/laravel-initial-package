@@ -13,9 +13,9 @@ class ResourceController extends Controller
         protected Request $request
     ){}
 
-    public function index($request)
+    public function index()
     {
-        $parameters = new Parameters($request);
+        $parameters = new Parameters($this->request);
 
         if($parameters->isPaginate()){
             $collection = $this->service->paginate($parameters->getFilter());
