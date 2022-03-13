@@ -1,0 +1,13 @@
+<?php
+
+namespace App\Services;
+
+use App\Repositories\$REPOSITORY_NAME$;
+
+class $SERVICE_NAME$ extends Service
+{
+    public function __construct($REPOSITORY_NAME$ $VAR_REPOSITORY_NAME$)
+    {
+        parent::__construct($VAR_REPOSITORY_NAME$);
+    }
+}

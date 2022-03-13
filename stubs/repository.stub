@@ -1,0 +1,13 @@
+<?php
+
+namespace App\Repositories;
+
+use App\Models\$MODEL_NAME$;
+
+class $REPOSITORY_NAME$ extends Repository
+{
+    public function __construct($MODEL_NAME$ $VAR_MODEL_NAME$)
+    {
+        parent::__construct($VAR_MODEL_NAME$);
+    }
+}
