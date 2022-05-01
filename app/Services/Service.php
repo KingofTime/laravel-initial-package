@@ -23,9 +23,9 @@ class Service
         return new ResourceCollection($this->repository->getAll($filter));
     }
 
-    public function paginate(array $filter): ResourceCollection
+    public function paginate(array $filter, int $per_page): ResourceCollection
     {
-        return new ResourceCollection($this->repository->paginate($filter));
+        return new ResourceCollection($this->repository->paginate($filter, $per_page));
     }
 
     public function create(array $data): JsonResource

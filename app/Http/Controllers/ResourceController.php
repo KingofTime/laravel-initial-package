@@ -18,7 +18,7 @@ class ResourceController extends Controller
         $parameters = new Parameters($request);
 
         if($parameters->isPaginate()){
-            $collection = $this->service->paginate($parameters->getFilter());
+            $collection = $this->service->paginate($parameters->getFilter(), $parameters->getPerPage());
         } else {
             $collection = $this->service->getAll($parameters->getFilter());
         }
