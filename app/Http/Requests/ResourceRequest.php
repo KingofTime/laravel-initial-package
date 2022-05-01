@@ -23,7 +23,7 @@ class ResourceRequest extends FormRequest
         return [];
     }
 
-    public function rulesFromPut()
+    public function rulesFromPut(int $id)
     {
         return [];
     }
@@ -38,7 +38,10 @@ class ResourceRequest extends FormRequest
         if ($this->method() == 'POST') {
             return $this->rulesFromPost();
         } else if ($this->method() == 'PUT') {
-            return $this->rulesFromPut();
+            $parameters = $this->route()->parameters;
+            $id = array_values($parameters)[0];
+
+            return $this->rulesFromPut($id);
         }
 
         return [];

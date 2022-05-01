@@ -6,8 +6,10 @@ use App\Models\Profile;
 
 class ProfileRepository extends Repository
 {
-    public function __construct(Profile $profile)
+    public function __construct(
+        protected Profile $profile
+    )
     {
-        parent::__construct($profile);
+        parent::__construct($this->profile);
     }
 }

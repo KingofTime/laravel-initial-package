@@ -23,6 +23,11 @@ class Repository
         return $this->model::where($filter)->get();
     }
 
+    public function exists(array $filter): bool
+    {
+        return $this->model::where($filter)->exists();
+    }
+
     public function paginate(array $filter, int $per_page): LengthAwarePaginator
     {
         return $this->model::where($filter)->paginate($per_page);
