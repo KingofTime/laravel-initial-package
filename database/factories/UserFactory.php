@@ -22,7 +22,7 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'login' => $this->faker->userName(),
-            'cpf' => $faker_br->cpf(),
+            'cpf' => str_replace(['.', '-'], '', $faker_br->cpf()),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'profile_id' => 1,
