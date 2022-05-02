@@ -10,7 +10,8 @@ class Repository
 {
     public function __construct(
        protected Model $model
-    ){}
+    ){
+    }
 
     public function get(int $id): Model
     {
@@ -22,9 +23,14 @@ class Repository
         return $this->model::where($filter)->get();
     }
 
-    public function paginate(array $filter): LengthAwarePaginator
+    public function exists(array $filter): bool
     {
-        return $this->model::where($filter)->paginate(5);
+        return $this->model::where($filter)->exists();
+    }
+
+    public function paginate(array $filter, int $per_page): LengthAwarePaginator
+    {
+        return $this->model::where($filter)->paginate($per_page);
     }
 
     public function create($data): Model

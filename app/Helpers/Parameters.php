@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class Parameters
 {
-    private $params;
+    private array $params;
 
     public function __construct(Request $request)
     {
@@ -20,10 +20,27 @@ class Parameters
 
     public function getFilter(): array
     {
+        $params = $this->params;
+
         if (array_key_exists('page', $this->params)) {
-              unset($this->params['page']);
+              unset($params['page']);
         }
 
-        return $this->params;
+        if (array_key_exists('per_page', $this->params)) {
+            unset($params['per_page']);
+        }
+
+        return $params;
+    }
+
+    public function getPerPage(): int
+    {
+        $per_page = 5;
+
+        if(array_key_exists('per_page', $this->params)) {
+            $per_page = $this->params['per_page'];
+        }
+
+        return $per_page;
     }
 }

@@ -9,12 +9,12 @@ class ProfileController extends ResourceController
 {
     public function __construct(
         ProfileService $profileService,
-        ProfileRequest $request
+        ProfileRequest $profileRequest
     )
     {
         parent::__construct(
             $profileService,
-            request: $request
+            request: $profileRequest
         );
     }
 }
