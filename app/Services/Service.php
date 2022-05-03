@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Repositories\Repository;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Illuminate\Http\Resources\Json\ResourceResponse;
 
 class Service
 {
@@ -33,12 +32,33 @@ class Service
         return new JsonResource($this->repository->create($data));
     }
 
-    public function update($id, $data): void
+    public function update(id $id, array $data): void
     {
         $this->repository->update($id, $data);
     }
 
-    public function delete($id) {
+    public function delete(int $id)
+    {
         $this->repository->delete($id);
+    }
+
+    public function restore(int $id)
+    {
+        $this->repository->restore($id);
+    }
+
+    public function onlyTrash(array $filter): ResourceCollection
+    {
+        return new ResourceCollection($this->repository->onlyTrash($filter));
+    }
+
+    public function onlyTrashPaginate(array $filter, int $per_page): ResourceCollection
+    {
+        return new ResourceCollection($this->repository->onlyTrashPaginate($filter, $per_page));
+    }
+
+    public function forceDelete(int $id)
+    {
+        $this->repository->forceDelete($id);
     }
 }

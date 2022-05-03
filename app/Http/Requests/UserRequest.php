@@ -5,8 +5,14 @@ namespace App\Http\Requests;
 
 class UserRequest extends ResourceRequest
 {
-    public function rulesFromPost()
+    protected function rulesFromPost()
     {
+
+        $uri = $this->route()->uri();
+        if($uri == 'api/users/trash/{id}') {
+            return [];
+        }
+
         return [
             "name" => "required|string|max:255",
             "login" => "required|string|unique:users,login|max:32",
@@ -17,7 +23,7 @@ class UserRequest extends ResourceRequest
         ];
     }
 
-    public function rulesFromPut(int $id)
+    protected function rulesFromPut(int $id)
     {
         return [
             "name" => "required|string|max:255",

@@ -33,18 +33,39 @@ class Repository
         return $this->model::where($filter)->paginate($per_page);
     }
 
-    public function create($data): Model
+    public function create(array $data): Model
     {
         return $this->model::create($data);
     }
 
-    public function update($id, $data): void
+    public function update(int $id, array $data): void
     {
         $this->model::findOrFail($id)->update($data);
     }
 
-    public function delete($id): void
+    public function delete(int $id): void
     {
         $this->model::findOrFail($id)->delete();
     }
+
+    public function restore(int $id): void
+    {
+        $this->model::withTrashed()->where(['id' => $id])->restore();
+    }
+
+    public function onlyTrash(array $filter): Collection
+    {
+        return $this->model::onlyTrashed()->where($filter)->get();
+    }
+
+    public function onlyTrashPaginate(array $filter, int $per_page): LengthAwarePaginator
+    {
+        return $this->model::onlyTrashed()->where($filter)->paginate($per_page);
+    }
+
+    public function forceDelete(int $id): void
+    {
+        $this->model::withTrashed()->where(['id' => $id])->forceDelete();
+    }
+
 }
