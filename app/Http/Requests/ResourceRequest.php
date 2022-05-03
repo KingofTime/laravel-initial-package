@@ -18,15 +18,16 @@ class ResourceRequest extends FormRequest
         return true;
     }
 
-    public function rulesFromPost()
+    protected function rulesFromPost()
     {
         return [];
     }
 
-    public function rulesFromPut(int $id)
+    protected function rulesFromPut(int $id)
     {
         return [];
     }
+
 
     /**
      * Get the validation rules that apply to the request.

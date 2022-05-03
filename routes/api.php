@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('users/trash', [UserController::class, 'onlyTrashed']);
+Route::post('users/trash/{id}', [UserController::class, 'restore']);
+Route::delete('users/trash/{id}', [UserController::class, 'forceDelete']);
+Route::apiResource('users', UserController::class);
 
 Route::apiResource('profiles', ProfileController::class);
-Route::apiResource('users', UserController::class);
