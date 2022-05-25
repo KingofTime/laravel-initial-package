@@ -19,7 +19,11 @@ class ReportResource extends JsonResource
             'endpoint' => $this->endpoint,
             'file' => $this->file,
             'format' => $this->format,
-            'user' => $this->user()
+            'user' => [
+                "name" => $this->user->name,
+                "cpf" => $this->user->cpf,
+                "email" => $this->user->email
+            ]
         ];
     }
 }
