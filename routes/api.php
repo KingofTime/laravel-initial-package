@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
 use App\Http\Requests\ProfileRequest;
 use Illuminate\Http\Request;
@@ -23,3 +24,4 @@ Route::delete('users/trash/{id}', [UserController::class, 'forceDelete']);
 Route::apiResource('users', UserController::class);
 
 Route::apiResource('profiles', ProfileController::class);
+Route::apiResource('reports', ReportController::class);
