@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Requests\ProfileRequest;
@@ -16,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::post('login', [AuthController::class, 'login']);
 
 Route::get('users/trash', [UserController::class, 'onlyTrashed']);
 Route::post('users/trash/{id}', [UserController::class, 'restore']);
