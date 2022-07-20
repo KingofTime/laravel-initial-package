@@ -11,7 +11,7 @@ class RelationalIntegrityException extends Exception
 
     }
 
-    public function render($request)
+    public function render()
     {
         return response([
             "error" => "error when performing operation",

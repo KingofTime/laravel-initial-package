@@ -2,27 +2,33 @@
 
 namespace App\Services;
 
-use App\Exceptions\RelationalIntegrityException;
-use App\Repositories\ProfileRepository;
+use App\Exceptions\SignInException;
 use App\Repositories\UserRepository;
+use Illuminate\Support\Facades\Hash;
+use PhpParser\Node\Scalar\String_;
 
-class ProfileService extends Service
+class AuthService
 {
     public function __construct(
-        protected ProfileRepository $profileRepository,
-        protected UserRepository $userRepository)
-    {
-        parent::__construct($this->profileRepository);
-    }
+        protected UserRepository $userRepository
+    )
+    {}
 
     /**
-     * @throws RelationalIntegrityException
+     * @throws SignInException
      */
-    public function delete($id) {
-        if ($this->userRepository->exists(['profile_id' => $id])) {
-            throw new RelationalIntegrityException();
-        } else {
-            $this->profileRepository->delete($id);
+    public function signIn(String $login, String $password): String
+    {
+        $user = $this->userRepository->getAll(["login" => $login]);
+
+        if(count($user)) {
+            $user = $user[0];
+
+            if (Hash::check($password, $user->password)) {
+                return $user->createToken('Token')->accessToken;
+            }
         }
+
+        throw new SignInException("Login or password invalid");
     }
 }

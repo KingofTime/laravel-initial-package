@@ -3,19 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AuthRequest;
+use App\Services\AuthService;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    protected $service;
-    public function __construct()
-    {
 
-    }
+    public function __construct(
+        protected AuthService $authService
+    )
+    {}
 
     public function login(AuthRequest $request)
     {
         $validated = $request->validated();
-//        $this->
+        $token = $this->authService->signIn(
+            $validated['login'],
+            $validated['password']
+        );
+
+        return response(["token" => $token], 200);
     }
 }
