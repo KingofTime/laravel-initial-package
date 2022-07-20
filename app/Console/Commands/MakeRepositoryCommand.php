@@ -39,7 +39,7 @@ class MakeRepositoryCommand extends MakeCommand
 
     public function getSourceFilePath()
     {
-        return base_path('App\\Repositories'). '\\'.
+        return base_path('app/Repositories'). '/'.
             $this->argument('name'). '.php';
     }
 

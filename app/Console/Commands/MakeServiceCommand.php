@@ -41,7 +41,7 @@ class MakeServiceCommand extends MakeCommand
 
     public function getSourceFilePath()
     {
-        return base_path('App\\Services'). '\\'.
+        return base_path('app/Services'). '/'.
             $this->argument('name'). '.php';
     }
 
